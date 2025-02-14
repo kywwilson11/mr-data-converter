@@ -43,17 +43,27 @@ var CSVParser = {
     RE = new RegExp("[^\t]", "gi");
     var numTabs = input.replace(RE, "").length;
 
+    //count the number of pipes
+    RE = new RegExp("[^|]", "gi");
+    var numPipes = input.replace(RE, "").length;
+
     var rowDelimiter = "\n";
     //set delimiter
-    var columnDelimiter = ",";
-    if (numTabs > numCommas) {
+    if ((numTabs > numCommas) && (numTabs > numPipes)) {
+      columnDelimiter = ","
+    } else if ((numCommas > numTabs) && (numCommas > numPipes)) {
       columnDelimiter = "\t"
+    }
+    else {
+      columnDelimiter = "|"
     };
 
     if (delimiterType === "comma") {
       columnDelimiter = ","
     } else if (delimiterType === "tab") {
       columnDelimiter = "\t"
+    } else if (delimiterType === "pipe") {
+      columnDelimiter = "|"
     }
 
 
@@ -283,3 +293,4 @@ var CSVParser = {
 
 
 }
+

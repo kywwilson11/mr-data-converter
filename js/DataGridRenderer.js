@@ -534,5 +534,80 @@ var DataGridRenderer = {
     return outputText;
     
   },
-  
+
+  //---------------------------------------
+  // Redmine table
+  //---------------------------------------
+  rmtable: function (dataGrid, headerNames, headerTypes, indent, newLine) {
+    //inits...
+    var outputText = "";
+    var numRows = dataGrid.length;
+    var numColumns = headerNames.length;
+    var indent = "";
+
+    // header row
+    if (headerNames[0] != "val0") {
+      outputText += indent+"|";
+      for (var j=0; j < numColumns; j++) {
+        outputText += "_." + headerNames[j];
+        if (j < (numColumns-1)) {outputText+=" |"};
+      };
+      outputText += " |" + newLine;
+    };
+
+    //begin render loop
+    for (var i=0; i < numRows; i++) {
+      outputText += indent+"| ";
+      for (var j=0; j < numColumns; j++) {
+        cellData = dataGrid[i][j];
+        // textile can handle line breaks, so translate \n back to a newline:
+        if (String(cellData).indexOf("\\n") > 0) {
+            cellData = cellData.replace(/\\n/g,"\n");
+        }
+        outputText += cellData;
+        if (j < (numColumns-1)) {outputText+=" | "};
+      };
+      outputText += " |" + newLine;
+    };
+
+    return outputText;
+  },
+
+  //---------------------------------------
+  // Redmine table to CSV
+  //---------------------------------------
+  rmtabletocsv: function (dataGrid, headerNames, headerTypes, indent, newLine) {
+    //inits...
+    var outputText = "";
+    var numRows = dataGrid.length;
+    var numColumns = headerNames.length;
+    var indent = "";
+
+    // header row
+    if (headerNames[0] != "val0") {
+      for (var j=0; j < numColumns; j++) {
+        outputText += headerNames[j].replace(/_./g,"");
+        if (j < (numColumns-1)) {outputText+=","};
+      };
+      outputText += newLine;
+    };
+
+    //begin render loop
+    for (var i=0; i < numRows; i++) {
+      for (var j=0; j < numColumns; j++) {
+        cellData = dataGrid[i][j];
+        // textile can handle line breaks, so translate \n back to a newline:
+        if (String(cellData).indexOf("\\n") > 0) {
+            cellData = cellData.replace(/\\n/g,"\n");
+        }
+        outputText += cellData;
+        if (j < (numColumns-1)) {outputText+=", "};
+      };
+      outputText += newLine;
+    };
+
+    return outputText;
+  }
+
 }
+
