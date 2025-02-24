@@ -586,10 +586,12 @@ var DataGridRenderer = {
     // header row
     if (headerNames[0] != "val0") {
       for (var j=0; j < numColumns; j++) {
-        outputText += headerNames[j].replace(/_./g,"");
-        outputText = outputText.replace(/\|/g,"");
-        outputText = outputText.replace(/\s+$/, '');
-        if (j < (numColumns-1)) {outputText+="\t"};
+        cellData = headerNames[j];
+        cellData = cellData.replace(/_./g,"");
+        cellData = cellData.replace(/\|/g,"");
+        cellData = cellData.replace(/\s+$/, '');
+        if (j < (numColumns-1)) {cellData+="\t"};
+	outputText += cellData;
       };
       outputText += newLine;
     };
@@ -604,6 +606,7 @@ var DataGridRenderer = {
         if (String(cellData).indexOf("\\n") > 0) {
             cellData = cellData.replace(/\\n/g,"\n");
         }
+	cellData += j;
         outputText += cellData;
         //if (j < (numColumns-1)) {outputText+=", "};
       };
