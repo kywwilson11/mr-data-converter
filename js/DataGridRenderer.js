@@ -589,7 +589,7 @@ var DataGridRenderer = {
         cellData = headerNames[j];
         cellData = cellData.replace(/_./g,"");
         cellData = cellData.replace(/\|/g,"");
-	cellData = cellData.replace(" ","\t");
+	//cellData = cellData.replace(" ","\t");
         if (j < (numColumns-1)) {cellData+="\t"};
 	outputText += cellData;
       };
@@ -600,6 +600,7 @@ var DataGridRenderer = {
     for (var i=0; i < numRows; i++) {
       for (var j=1; j < numColumns; j++) {
         cellData = dataGrid[i][j];
+	cellData = cellData.replace(/\s/g,"");
 	if (cellData.match(/\\t/)) { cellData = '"' + cellData + '"'};
 	cellData = cellData.replace(/\|/g,"");
 	cellData = cellData.replace(/\\t/g,"\t");
@@ -609,7 +610,7 @@ var DataGridRenderer = {
         }
 	//cellData += j;
         outputText += cellData;
-        //if (j < (numColumns-1)) {outputText+=", "};
+        if (j < (numColumns-1)) {outputText+="\t"};
       };
       outputText += newLine;
     };
