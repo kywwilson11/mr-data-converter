@@ -158,7 +158,7 @@ DataConverter.prototype.convert = function() {
     CSVParser.resetLog();
     var parseOutput = CSVParser.parse(this.inputText, this.headersProvided, this.delimiter, this.downcaseHeaders, this.upcaseHeaders);
     if(this.delimiter == "|") {
-      this.inputHeader = $('<div class="groupHeader" id="inputHeader"><p class="groupHeadline">Input Redmine Data. <span class="subhead"> Using Excel? Simply copy and paste. No data on hand? <a href="#" id="insertSample">Use sample</a></span></p></div>');
+      this.node.inputHeader = $('<div class="groupHeader" id="inputHeader"><p class="groupHeadline">Input Redmine Data. <span class="subhead"> Using Excel? Simply copy and paste. No data on hand? <a href="#" id="insertSample">Use sample</a></span></p></div>');
     }
     var dataGrid = parseOutput.dataGrid;
     var headerNames = parseOutput.headerNames;
