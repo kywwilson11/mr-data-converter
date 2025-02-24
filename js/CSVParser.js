@@ -50,9 +50,9 @@ var CSVParser = {
     var rowDelimiter = "\n";
     //set delimiter
     if ((numTabs > numCommas) && (numTabs > numPipes)) {
-      columnDelimiter = ","
-    } else if ((numCommas > numTabs) && (numCommas > numPipes)) {
       columnDelimiter = "\t"
+    } else if ((numCommas > numTabs) && (numCommas > numPipes)) {
+      columnDelimiter = ","
     }
     else {
       columnDelimiter = "|"
