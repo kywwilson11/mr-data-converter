@@ -598,15 +598,14 @@ var DataGridRenderer = {
     for (var i=0; i < numRows; i++) {
       for (var j=0; j < numColumns; j++) {
         cellData = dataGrid[i][j];
-	cellData = cellData.replace(/\s+$/, '');
-	cellData = cellData.replace(/ \|/g,"\t");
-	cellData = cellData.replace(/\t/g,"\t"); 
+	cellData = cellData.replace(/\|/g,"");
+	cellData = cellData.replace(/\\t/g,"\t");
         // textile can handle line breaks, so translate \n back to a newline:
         if (String(cellData).indexOf("\\n") > 0) {
             cellData = cellData.replace(/\\n/g,"\n");
         }
         outputText += cellData;
-        if (j < (numColumns-1)) {outputText+=", "};
+        //if (j < (numColumns-1)) {outputText+=", "};
       };
       outputText += newLine;
     };
