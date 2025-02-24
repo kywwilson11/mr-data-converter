@@ -128,7 +128,7 @@ var CSVParser = {
     //test all the rows for proper number of columns.
     for (var i=0; i < dataArray.length; i++) {
       var numValues = dataArray[i].length;
-      if (columnDelimiter == "|") {numColumns--};
+      if (columnDelimiter == "|") {numValues--};
       if (numValues != numColumns) {this.log("Error parsing row "+String(i)+". Wrong number of columns.")};
     };
 
