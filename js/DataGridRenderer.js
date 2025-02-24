@@ -587,8 +587,8 @@ var DataGridRenderer = {
     if (headerNames[0] != "val0") {
       for (var j=0; j < numColumns; j++) {
         outputText += headerNames[j].replace(/_./g,"");
-        outputText += headerNames[j].replace(/|/g,"");
-        outputText += headerNames[j].replace(/\s+$/, '');
+        outputText = outputText.replace(/|/g,"");
+        outputText = outputText.replace(/\s+$/, '');
         if (j < (numColumns-1)) {outputText+="\t"};
       };
       outputText += newLine;
